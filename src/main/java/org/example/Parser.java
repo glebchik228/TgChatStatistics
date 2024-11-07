@@ -34,7 +34,6 @@ public class Parser {
                 continue;
             int id = messageNode.get("id").asInt();
             String from = messageNode.get("from").asText();
-            System.out.println(id);
             LocalDateTime date = LocalDateTime.parse(messageNode.get("date").asText(), formatter);
 
 
