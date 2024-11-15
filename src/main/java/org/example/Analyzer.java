@@ -19,10 +19,10 @@ public class Analyzer {
     private final Map<String, Integer> wordsPerUser;
     private int totalCharacters;
     private final Map<String, Integer> charactersPerUser;
-    private final Map<String, Integer> mostPopularMessages;
+    private final Map<String, Integer> mostPopularMessages; // TODO
     private final Map<String, Map<String, Integer>> mostPopularMessagesPerUser;
-    private final Map<String, Integer> mostPopularWords;
-    private final Map<String, Map<String, Integer>> mostPopularWordsPerUser;
+    private final Map<String, Integer> mostPopularWords; // TODO
+    private final Map<String, Map<String, Integer>> mostPopularWordsPerUser; // TODO
 
 
     public Map<LocalDate, Map<String, Integer>> getCountOfMessagesPerDayPerUser() {
@@ -204,7 +204,8 @@ public class Analyzer {
     private Map<String, Map<String, Integer>> calculateMostPopularMessagesPerUser() {
         Map<String, Map<String, Integer>> messagesPerUser = new HashMap<>();
         for (Message message : chat.getMessages()) {
-            String text = message.getText();
+            String text = message.getText().toLowerCase();
+            if (text.isEmpty()) continue;
             String name = message.getSenderName();
             Map<String, Integer> userMessagesMap = messagesPerUser.computeIfAbsent(name, k -> new HashMap<>());
             userMessagesMap.put(text, userMessagesMap.getOrDefault(text, 0) + 1);
